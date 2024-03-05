@@ -3,14 +3,16 @@ import express from 'express'
 import mongoose from 'mongoose'
 import './database/conectdb.js'
 import authRouter from "./routes/auth.route.js"
+import cookieParser from 'cookie-parser';
 
 const app = express()
 const PORT = process.env.PORT || 8000 ;
 
+app.use(cookieParser());
 
 app.use(express.json());
 
-app.use('/api',authRouter) ;
+app.use('/api/auth',authRouter) ;
 
 app.get('/' , (req,res)=>{
     res.json({ok: true})
