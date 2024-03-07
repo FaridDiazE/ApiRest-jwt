@@ -5,15 +5,22 @@ import { generateToken } from '../utils/generateToken.js';
 import { generateRefreshToken } from '../utils/generateToken.js';
 
 export const register = async  (req , res) =>{
+
     console.log(req.body);
+
     const {email, password , name} = req.body ;
+
     try {
         const user  = new User ({email,password,name});
         await user.save();
-        return res.json({ok : true})
+
+        const { token, expiresIn } = generateToken(user.id);
+        generateRefreshToken(user.id, res);
+        
+        return res.json({ok : true , token , expiresIn})
         
     } catch (error) {
-        console.log(error)
+        console.log(error)  
         if(error.code == 11000){
             return res.status(400).json({error:"Correo ya registrado"})
         }
@@ -30,6 +37,7 @@ export const login = async (req, res) => {
         if (!user)return res.status(403).json({ error: "No existe este usuario" });
 
         const respuestaPassword = await user.comparePassword(password);
+        
         if (!respuestaPassword) return res.status(403).json({ error: "Contraseña incorrecta" });
 
        const { token, expiresIn } = generateToken(user.id);

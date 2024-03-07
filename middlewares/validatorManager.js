@@ -13,6 +13,7 @@ export const expressValidation = (req , res , next) =>{
 
 export const validationBodyRegister=[
     body('email' , "Format is not valid").trim().isEmail().normalizeEmail() ,
+
     body('password' , "format no valid").trim().isLength({min:6}),
     expressValidation
 ]

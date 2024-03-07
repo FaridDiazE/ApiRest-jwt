@@ -37,6 +37,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.pre('save', async function (next) {
+
     const user = this;
 
     try {
@@ -47,6 +48,7 @@ userSchema.pre('save', async function (next) {
         user.password = await bcrypt.hash(user.password, salt);
 
         next();
+        
     } catch (error) {
         throw new Error('Fallo el hash de la contraseña');
     }
