@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const sneakerSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
     name:{
         type : String ,
         require : true 
@@ -20,9 +20,17 @@ const sneakerSchema = mongoose.Schema({
     brand:{
         type : String ,
         require:true
+    },
+    stock:{
+        type : Number,
+        require:true
+    },
+    category : {
+        type : String,
+        require : true
     }
 
 
 })
 
-export const Sneaker = mongoose.model('Snicker' ,sneakerSchema )
+export const Sneaker = mongoose.model('Inventory' ,productSchema )

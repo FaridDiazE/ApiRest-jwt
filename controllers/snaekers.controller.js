@@ -1,4 +1,4 @@
-import { Sneaker } from "../models/sneakers.js"
+import { Sneaker } from "../models/products.js"
 
 
 export const getSneakers = async (req,res) =>{
@@ -29,9 +29,9 @@ export const getSnk = async (req ,res) => {
 
 export const creteSnekaer = async(req,res) => {
     try {
-        const{name,model,size,price,brand} = req.body;
+        const{name,model,size,price,brand,stock,category} = req.body;
 
-        const sneakers  = new Sneaker({name,model,size,price,brand});
+        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category});
         await sneakers.save();
         return res.json({ok : true})
         
@@ -67,13 +67,13 @@ export const updateSnk = async (req, res) => {
     try {
         const { id  } = req.params;
 
-        const{name,model,size,price,brand} = req.body;
+        const{name,model,size,price,brand,stock,category} = req.body;
 
         const snk = await Sneaker.findById(id);
 
         if (!snk) return res.status(404).json({ error: "No existe el sneaker" });
 
-         await snk.updateOne({ $set: { name,model,size,price,brand} })
+         await snk.updateOne({ $set: { name,model,size,price,brand,stock,category} })
         
 
         return res.json({ ok : true });
