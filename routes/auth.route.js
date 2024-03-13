@@ -6,18 +6,12 @@ import { infoUser } from '../controllers/auth.controller.js';
 import { requireToken } from '../middlewares/requireToken.js';
 import { requireRefreshToken } from '../middlewares/requireRefreshToken.js';
 import { validationBodyLogin, validationBodyRegister } from '../middlewares/validatorManager.js';
-
-
-
-
-
+import { accountLimiter } from '../utils/limitRequests.js';
 
 const router = Router()
 
 
-
-
-router.post ("/login",validationBodyLogin,expressValidation,login);
+router.post ("/login",validationBodyLogin,expressValidation, accountLimiter ,login);
 
 router.post ("/register",validationBodyRegister,register);
 
