@@ -33,7 +33,8 @@ const userSchema = mongoose.Schema({
     rol:{
         type : String,
         required:false
-    }
+    },
+    
 });
 
 userSchema.pre('save', async function (next) {

@@ -28,6 +28,10 @@ const productSchema = mongoose.Schema({
     category : {
         type : String,
         require : true
+    },
+    imageURL : {
+        type : String ,
+        require : true
     }
 
 

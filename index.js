@@ -1,6 +1,7 @@
 import "dotenv/config"
 import express from 'express'
 import mongoose from 'mongoose'
+
 import './database/conectdb.js'
 import authRouter from "./routes/auth.route.js"
 import cookieParser from 'cookie-parser';

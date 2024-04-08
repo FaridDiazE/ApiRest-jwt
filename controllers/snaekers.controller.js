@@ -1,4 +1,8 @@
 import { Sneaker } from "../models/products.js"
+import fs from 'fs'
+
+
+
 
 
 export const getSneakers = async (req,res) =>{
@@ -29,9 +33,12 @@ export const getSnk = async (req ,res) => {
 
 export const creteSnekaer = async(req,res) => {
     try {
-        const{name,model,size,price,brand,stock,category} = req.body;
-
-        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category});
+        console.log(req.file);
+        const newPath = saveIMG(req.file);
+        
+        const{name,model,size,price,brand,stock,category,imageURL=newPath} = req.body;
+       
+        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category,imageURL});
         await sneakers.save();
         return res.json({ok : true})
         
@@ -41,6 +48,12 @@ export const creteSnekaer = async(req,res) => {
     }
  }
 
+function saveIMG (file){
+    const newPath =`./uploads/${file.originalname}`;
+    fs.renameSync(file.path , newPath) 
+    return newPath ;
+
+}
  
 
   export const removeSnk = async (req, res) => {
