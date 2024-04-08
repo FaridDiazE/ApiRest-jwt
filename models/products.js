@@ -32,7 +32,21 @@ const productSchema = mongoose.Schema({
     imageURL : {
         type : String ,
         require : true
-    }
+    },
+    charasterics : {
+        type : String , 
+        requiere : true
+    },
+    materials : {
+        type : String ,
+        requiere : true 
+    },
+    madeIn : {
+        type : String ,
+        require : true
+    },
+
+
 
 
 })

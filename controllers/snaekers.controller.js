@@ -36,9 +36,9 @@ export const creteSnekaer = async(req,res) => {
         console.log(req.file);
         const newPath = saveIMG(req.file);
         
-        const{name,model,size,price,brand,stock,category,imageURL=newPath} = req.body;
+        const{name,model,size,price,brand,stock,category,imageURL=newPath,charasterics,materials,madeIn } = req.body;
        
-        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category,imageURL});
+        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category,imageURL,charasterics,materials,madeIn});
         await sneakers.save();
         return res.json({ok : true})
         
@@ -80,7 +80,7 @@ export const updateSnk = async (req, res) => {
     try {
         const { id  } = req.params;
 
-        const{name,model,size,price,brand,stock,category} = req.body;
+        const{name,model,size,price,brand,stock,category,charasterics,materials,madeIn} = req.body;
 
         const snk = await Sneaker.findById(id);
 
