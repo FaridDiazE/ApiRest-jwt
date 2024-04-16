@@ -9,8 +9,9 @@ const upload = multer({dest:'uploads/'})
 
 
 
-router.get('/',requireToken,getSneakers)
-router.get('/:id',requireToken,getSnk)
+
+router.get('/allProducts',requireToken,getSneakers)
+router.get('/productUnique/:id',requireToken,getSnk)
 router.post('/createSnk',requireToken,upload.single('imageIdentify'),creteSnekaer)
 router.put('/esditSnk/:id',requireToken,updateSnk)
 router.delete('/deleteSnk/:id',requireToken,removeSnk)

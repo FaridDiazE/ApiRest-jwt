@@ -36,9 +36,9 @@ export const creteSnekaer = async(req,res) => {
         console.log(req.file);
         const newPath = saveIMG(req.file);
         
-        const{name,model,size,price,brand,stock,category,imageURL=newPath,charasterics,materials,madeIn } = req.body;
+        const{name,model,size,price,brand,stock,category,imageURL=newPath,charasterics,materials } = req.body;
        
-        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category,imageURL,charasterics,materials,madeIn});
+        const sneakers  = new Sneaker({name,model,size,price,brand,stock,category,imageURL,charasterics,materials});
         await sneakers.save();
         return res.json({ok : true})
         
@@ -50,8 +50,9 @@ export const creteSnekaer = async(req,res) => {
 
 function saveIMG (file){
     const newPath =`./uploads/${file.originalname}`;
+    const regresoPath = `/uploads/${file.originalname}`;
     fs.renameSync(file.path , newPath) 
-    return newPath ;
+    return regresoPath ;
 
 }
  
@@ -75,21 +76,21 @@ function saveIMG (file){
         return res.status(500).json({ error: "error de servidor" });
     }
 };
-
 export const updateSnk = async (req, res) => {
     try {
-        const { id  } = req.params;
-
-        const{name,model,size,price,brand,stock,category,charasterics,materials,madeIn} = req.body;
+        const { id } = req.params;
 
         const snk = await Sneaker.findById(id);
 
+        const { name, model, size, price, brand, stock, category, charasterics, materials } = req.body;
+
+        console.log("Datos recibidos del cliente:", req.body);
+
         if (!snk) return res.status(404).json({ error: "No existe el sneaker" });
 
-         await snk.updateOne({ $set: { name,model,size,price,brand,stock,category} })
-        
+        await snk.updateOne({ $set: { name, model, size, price, brand, stock, category, charasterics, materials } })
 
-        return res.json({ ok : true });
+        return res.json({ ok: true });
 
     } catch (error) {
         console.log(error);

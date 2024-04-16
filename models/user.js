@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
         required : true
     },
     birthday:{
-        type: Date ,
+        type: String ,
         required: false
     },
     email:{
@@ -34,7 +34,16 @@ const userSchema = mongoose.Schema({
         type : String,
         required:false
     },
+    city : {
+        type : String ,
+        required:true
+    },
+    phone : {
+        type : Number ,
+        required:true
+    }
     
+
 });
 
 userSchema.pre('save', async function (next) {

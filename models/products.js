@@ -40,11 +40,7 @@ const productSchema = mongoose.Schema({
     materials : {
         type : String ,
         requiere : true 
-    },
-    madeIn : {
-        type : String ,
-        require : true
-    },
+    }
 
 
 
