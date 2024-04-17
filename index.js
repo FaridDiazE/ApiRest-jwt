@@ -32,7 +32,7 @@ app.use('/api/v1/sneakers',sneakerRoutes)
 app.use('/api/v1/sales',salesRoutes)
 
 app.get('/' , (req,res)=>{
-    res.json({ok: true})
+    res.json({ok: true , cambios : 'Iniciado con nuevos cambios'})
 });
 
 
