@@ -41,10 +41,6 @@ const productSchema = mongoose.Schema({
         type : String ,
         requiere : false
     }
-
-
-
-
 })
 
 export const Sneaker = mongoose.model('Inventory' ,productSchema )
