@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 app.use(cors({
-  origin: ['*'],
+  origin: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
   credentials: true

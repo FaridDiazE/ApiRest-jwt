@@ -14,8 +14,7 @@ const userSchema = mongoose.Schema({
         type : String ,
         required : true,
         trim : true,
-        unique : true,
-
+        unique : true
     },
     password:{
         type:String ,
@@ -25,7 +24,6 @@ const userSchema = mongoose.Schema({
         type:String,
         required:false
     },
-
     shopingcar:{
         type : Array,
         required: false
@@ -42,8 +40,6 @@ const userSchema = mongoose.Schema({
         type : Number ,
         required:true
     }
-    
-
 });
 
 userSchema.pre('save', async function (next) {

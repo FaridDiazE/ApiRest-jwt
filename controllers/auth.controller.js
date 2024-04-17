@@ -8,12 +8,12 @@ import { generateRefreshToken } from '../utils/generateToken.js';
 
 export const register = async  (req , res) =>{
 
-    console.log(req.body);
+    console.log("Datos llegando",req.body);
 
-    const {email, password , name , rol , birthday , adress , shopingcar,phone,city} = req.body ;
+    const {email,password,name,rol,birthday,adress,shopingcar,phone,city} = req.body ;
 
     try {
-        const user  = new User ({email,password,name, rol , birthday , adress , shopingcar,phone,city});
+        const user  = new User ({email,password,name,rol,birthday,adress,shopingcar,phone,city});
         await user.save();
 
         const { token, expiresIn } = generateToken(user.id);
