@@ -35,11 +35,11 @@ const productSchema = mongoose.Schema({
     },
     charasterics : {
         type : String , 
-        requiere : true
+        requiere : false
     },
     materials : {
         type : String ,
-        requiere : true 
+        requiere : false
     }
 
 
