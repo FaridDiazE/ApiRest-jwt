@@ -17,10 +17,12 @@ export const register = async  (req , res) =>{
         await user.save();
 
         const { token, expiresIn } = generateToken(user.id);
+
+        const id = user.id;
         
         generateRefreshToken(user.id, res);
         
-        return res.json({ok : true , token , expiresIn})
+        return res.json({ok : true , token , expiresIn, id})
         
     } catch (error) {
         console.log(error)  

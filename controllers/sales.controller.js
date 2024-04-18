@@ -9,6 +9,8 @@ export const venta = async (req , res ) =>{
 
         console.log(reciver,products);
 
+        const Usr = await User.findById(reciver);
+
         const prices = await getPriceList(products);
 
         const total = prices.reduce((acc, price) => acc + price, 0);
@@ -16,6 +18,10 @@ export const venta = async (req , res ) =>{
         const Venta = new Sells({reciver,products,total});
 
         await Venta.save();
+        
+        const shopingcar = [''];
+
+        await Usr.updateOne({ $set: { shopingcar} })
 
         return res.json({ok : true})
 
