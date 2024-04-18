@@ -1,7 +1,7 @@
 import "dotenv/config"
 import express from 'express'
 import mongoose from 'mongoose'
-import './database/conectdb.js'
+import './database/conectdb.cjs'
 import authRouter from "./routes/auth.route.js"
 import cookieParser from 'cookie-parser';
 import sneakerRoutes from './routes/sneaker.route.js'
